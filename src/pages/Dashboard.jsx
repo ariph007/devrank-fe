@@ -65,10 +65,14 @@ const Dashboard = () => {
         {/* Title Button */}
         <section>
           <div className="flex justify-between">
-            <p className="text-base font-bold text-txtBlack md:text-4xl">
+            <p
+              data-cy="activity-title"
+              className="text-base font-bold text-txtBlack md:text-4xl"
+            >
               Activity
             </p>
             <Button
+              data-cy="activity-add-button"
               type="tambah"
               onClick={onCreateActivity}
               loadingComponent={loading}
