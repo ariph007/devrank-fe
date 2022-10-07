@@ -89,9 +89,9 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
         </div>
       </div>
       <div
+        data-cy="modal-delete-confirm-button"
         className="absolute right-[24px]"
         onClick={deleteHandler}
-        data-cy="todo-item-delete-button"
       >
         <svg
           className="h-6 w-6 text-txtGray hover:cursor-pointer hover:text-txtGray/80"

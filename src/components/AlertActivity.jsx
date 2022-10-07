@@ -8,7 +8,12 @@ const AlertActivity = ({ alertComponent, setAlertComponent }) => {
 
   return (
     <Transition appear show={alertComponent} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Dialog
+        data-cy="=modal-information"
+        as="div"
+        className="relative z-10"
+        onClose={closeModal}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

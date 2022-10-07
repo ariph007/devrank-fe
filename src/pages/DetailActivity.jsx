@@ -163,7 +163,7 @@ const DetailActivity = () => {
 
                 <img
                   onClick={editTitle}
-                  data-cy="todo-title-edit-button"
+                  data-cy="data-cy=todo-title"
                   width={24}
                   height={24}
                   className="mr-[19px] ml-[24px] object-contain hover:cursor-pointer"

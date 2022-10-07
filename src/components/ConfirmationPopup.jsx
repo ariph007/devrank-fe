@@ -64,6 +64,7 @@ const ConfirmationPopup = ({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
+                data-cy="modal-delete"
                 className="h-[355px] w-[490px] max-w-md transform overflow-hidden 
               rounded-2xl bg-white px-[40px] text-left align-middle shadow-xl transition-all 2xl:px-[62px]"
               >

@@ -96,6 +96,7 @@ const Dashboard = () => {
         <section className="mt-[37px] grid h-full w-full grid-cols-2 gap-y-[20px] sm:grid-cols-3 md:mt-[49px] md:grid-cols-2 md:gap-y-[26px] lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {activity?.map((item) => (
             <CardActivity
+              data-cy="activity-item"
               onClickCard={Cardhandler}
               key={item.id}
               id={item.id}
