@@ -6,7 +6,7 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
     return loadingComponent ? (
       <button
         disabled
-        data-cy="activity-add-button"
+        dta-cy="todo-add-button"
         className={`bg- flex h-9 w-24 items-center justify-center rounded-[45px]
         ${bgOpacity} ${
           !opacity && "cursor-wait bg-primary hover:bg-primary/80"
@@ -31,14 +31,14 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
         </svg>
         <p
           className="text-xs font-semibold text-txtWhite md:text-lg"
-          dta-cy="Tambah"
+          dta-cy="todo-add-button"
         >
           Tambah
         </p>
       </button>
     ) : (
       <button
-        data-cy="activity-add-button"
+        dta-cy="todo-add-button"
         className={`bg- flex h-9 w-24 items-center justify-center rounded-[45px]
         ${bgOpacity} ${
           !opacity && "cursor-pointer bg-primary hover:bg-primary/80"
@@ -55,12 +55,7 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
             alt="tambahIcon"
           />
         </span>
-        <p
-          className="text-xs font-semibold text-txtWhite md:text-lg"
-          dta-cy="Tambah"
-        >
-          Tambah
-        </p>
+        <p className="text-xs font-semibold text-txtWhite md:text-lg">Tambah</p>
       </button>
     );
   } else if (type === "simpan") {

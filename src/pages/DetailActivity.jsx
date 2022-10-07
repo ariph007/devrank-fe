@@ -145,6 +145,7 @@ const DetailActivity = () => {
                 />
                 {!inputTitle ? (
                   <div
+                    onClick={editTitle}
                     data-cy="todo-title"
                     className="max-w-full text-base font-bold text-txtBlack md:text-4xl"
                   >
