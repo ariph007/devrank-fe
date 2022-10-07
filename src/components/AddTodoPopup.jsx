@@ -159,11 +159,11 @@ const AddTodoPopup = ({
                         focus-visible:ring-opacity-75 focus-visible:ring-offset-2 
                         focus-visible:ring-offset-orange-300 sm:text-sm"
                         >
-                          <span
-                            data-cy="modal-add-priority-item"
-                            className="flex items-center truncate "
-                          >
-                            <div className="mr-[19px] h-[9px] w-[9px] rounded-full" />
+                          <span className="flex items-center truncate ">
+                            <div
+                              data-cy="modal-add-priority-item"
+                              className="mr-[19px] h-[9px] w-[9px] rounded-full"
+                            />
                             {selected.length === 0
                               ? "Pilih Priority"
                               : selected.name}

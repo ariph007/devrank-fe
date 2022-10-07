@@ -29,7 +29,7 @@ const CardActivity = ({
       </div>
       <div className="flex justify-between ">
         <p
-          activity-item-date
+          data-cy="activity-item-date"
           className="flex cursor-default items-center text-[10px] font-medium text-txtGray md:text-sm"
         >
           {dateCreated}

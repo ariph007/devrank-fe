@@ -29,7 +29,7 @@ const SortMenu = ({ menuSortHandler, activeSort }) => {
                       px-[21px] hover:bg-blue-100"
           key={item.id}
         >
-          <div className="flex">
+          <div data-cy="sort-selection" className="flex">
             <img
               width={18}
               height={18}
