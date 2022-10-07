@@ -164,7 +164,7 @@ const DetailActivity = () => {
 
                 <img
                   onClick={editTitle}
-                  data-cy="data-cy=todo-title"
+                  data-cy="todo-title-edit-button"
                   width={24}
                   height={24}
                   className="mr-[19px] ml-[24px] object-contain hover:cursor-pointer"
@@ -173,18 +173,16 @@ const DetailActivity = () => {
                 />
               </div>
               <div className="relative flex items-center justify-center">
-                {activity.length >= 1 ? (
-                  <img
-                    onClick={sortMenuHandler}
-                    data-cy="todo-sort-button"
-                    width={54}
-                    height={54}
-                    className="mr-[19px] object-contain hover:cursor-pointer"
-                    src={require("../assets/todo-sort-button.png")}
-                    alt="todo-sort-button"
-                  />
-                ) : null}
-
+                <img
+                  onClick={sortMenuHandler}
+                  data-cy="todo-sort-button"
+                  width={54}
+                  height={54}
+                  className="mr-[19px] object-contain hover:cursor-pointer"
+                  src={require("../assets/todo-sort-button.png")}
+                  alt="todo-sort-button"
+                />
+                )
                 {isOpenSort && (
                   <SortMenu
                     menuSortHandler={menuSortHandler}

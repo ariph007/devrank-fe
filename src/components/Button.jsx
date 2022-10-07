@@ -46,7 +46,6 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
       >
         <span>
           <img
-            data-cy="tabler:plus"
             width={24}
             height={24}
             className="object-contain"
@@ -60,7 +59,6 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
   } else if (type === "simpan") {
     return (
       <button
-        data-cy="modal-add-save-button"
         className="flex h-9 w-24 cursor-pointer items-center justify-center
       rounded-[45px] bg-primary transition hover:bg-primary/80  md:h-14 md:w-40"
         onClick={onClick}
@@ -76,7 +74,6 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
   } else if (type === "batal") {
     return (
       <button
-        data-cy="modal-delete-cancel-button"
         className="flex h-9 w-24 cursor-pointer items-center justify-center
       rounded-[45px] bg-txtGray transition hover:bg-txtGray/80  md:h-14 md:w-40"
         onClick={onClick}
@@ -93,8 +90,7 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
     return (
       <button
         disabled
-        data-cy="activity-add-button"
-        className={`bg- flex h-9 w-24 cursor-default cursor-not-allowed items-center
+        className={`bg- flex h-9 w-24 cursor-not-allowed items-center
     justify-center rounded-[45px] bg-primary/60 transition
      md:h-14 md:w-40`}
       >
@@ -110,7 +106,6 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
     return loadingComponent ? (
       <button
         disabled
-        data-cy="modal-delete-confirm-button"
         className="flex h-9 w-24 cursor-not-allowed items-center justify-center
   rounded-[45px] bg-danger transition hover:bg-danger/80  md:h-14 md:w-40"
       >
@@ -139,7 +134,6 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
       </button>
     ) : (
       <button
-        data-cy="modal-delete-confirm-button"
         className="flex h-9 w-24 cursor-pointer items-center justify-center
 rounded-[45px] bg-danger transition hover:bg-danger/80  md:h-14 md:w-40"
         onClick={onClick}
