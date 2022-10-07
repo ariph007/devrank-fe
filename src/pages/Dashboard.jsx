@@ -56,7 +56,11 @@ const Dashboard = () => {
         page="dashboard"
       />
       {alert && (
-        <AlertActivity alertComponent={alert} setAlertComponent={setAlert} />
+        <AlertActivity
+          data-cy="modal-information"
+          alertComponent={alert}
+          setAlertComponent={setAlert}
+        />
       )}
 
       {/* Header */}
