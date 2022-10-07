@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Button from "./Button";
 import ActivityService from "../services/activity";
+import TodoItemService from "../services/todoItem";
 
 const ConfirmationPopup = ({
   open,
@@ -9,15 +10,24 @@ const ConfirmationPopup = ({
   selectedActivity,
   refresh,
   setConfirmationPopup,
+  page,
+  todo,
 }) => {
   function closeModal() {
     setOpen(false);
   }
 
   const [loading, setLoading] = useState(false);
+
+  const deleteTodo = async (id) => {
+    setLoading(true);
+    await TodoItemService.deleteSingleTodo(id);
+    setLoading(false);
+    setOpen(false);
+    refresh();
+  };
   const onDeleteActivity = async (id) => {
     setLoading(true);
-    console.log(loading);
     await ActivityService.deleteActivity(id);
     setLoading(false);
     setOpen(false);
@@ -25,9 +35,7 @@ const ConfirmationPopup = ({
     refresh();
   };
 
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
+  useEffect(() => {}, [loading]);
 
   return (
     <Transition appear show={open} as={Fragment}>
@@ -77,16 +85,31 @@ const ConfirmationPopup = ({
                   >
                     Apakah anda yakin ingin menghapus ?
                   </p>
-                  <p className="text-lg font-bold"> "{selectedActivity[1]}"?</p>
+                  {page === "dashboard" ? (
+                    <p className="text-lg font-bold">
+                      {" "}
+                      "{selectedActivity[1]}"?
+                    </p>
+                  ) : (
+                    <p>Detail Page</p>
+                  )}
                 </div>
 
                 <div className="mt-4 flex justify-between gap-x-5">
                   <Button type="batal" onClick={closeModal} />
-                  <Button
-                    type="hapus"
-                    loadingComponent={loading}
-                    onClick={() => onDeleteActivity(selectedActivity[0])}
-                  />
+                  {page === "dashboard" ? (
+                    <Button
+                      type="hapus"
+                      loadingComponent={loading}
+                      onClick={() => onDeleteActivity(selectedActivity[0])}
+                    />
+                  ) : (
+                    <Button
+                      type="hapus"
+                      loadingComponent={loading}
+                      onClick={() => deleteTodo(todo.id)}
+                    />
+                  )}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

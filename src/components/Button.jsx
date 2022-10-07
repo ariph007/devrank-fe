@@ -95,6 +95,23 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
         </p>
       </button>
     );
+  } else if (type === "simpanDisable") {
+    return (
+      <button
+        disabled
+        data-cy="activity-add-button"
+        className={`bg- flex h-9 w-24 cursor-default cursor-not-allowed items-center
+    justify-center rounded-[45px] bg-primary/60 transition
+     md:h-14 md:w-40`}
+      >
+        <p
+          className="text-xs font-semibold text-txtWhite md:text-lg"
+          dta-cy="Tambah"
+        >
+          Simpan
+        </p>
+      </button>
+    );
   } else {
     return loadingComponent ? (
       <button

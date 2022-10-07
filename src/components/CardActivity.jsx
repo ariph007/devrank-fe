@@ -1,6 +1,6 @@
 import React from "react";
 
-const CardActivity = ({ title, created, id, onDelete }) => {
+const CardActivity = ({ title, created, id, onDelete, onClickCard }) => {
   let dateCreated = new Date(created).toLocaleDateString("id-ID", {
     dateStyle: "long",
   });
@@ -11,12 +11,14 @@ const CardActivity = ({ title, created, id, onDelete }) => {
       className="flex h-[150px] w-[150px] cursor-pointer flex-col justify-between rounded-[12px] bg-txtWhite
     px-[17px] py-[17px] shadow-lg transition hover:shadow-2xl md:h-[234px] md:w-[234px] md:px-[26px] md:py-[25px]"
     >
-      <p
-        data-cy="activity-item-title"
-        className="text-sm font-bold text-txtBlack md:text-lg"
-      >
-        {title}
-      </p>
+      <div onClick={() => onClickCard(id)} className="h-full w-full">
+        <p
+          data-cy="activity-item-title"
+          className="text-sm font-bold text-txtBlack md:text-lg"
+        >
+          {title}
+        </p>
+      </div>
       <div className="flex justify-between ">
         <p
           data-cy="activity-item-date"

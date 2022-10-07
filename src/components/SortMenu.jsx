@@ -1,7 +1,21 @@
 import React from "react";
-import sort from "../ultills/menuSort";
+import sort from "../ultils/menuSort";
 
 const SortMenu = ({ menuSortHandler, activeSort }) => {
+  const dataCyHandler = (id) => {
+    if (id === 1) {
+      return "sort-latest";
+    } else if (id === 2) {
+      return "sort-oldest";
+    } else if (id === 3) {
+      return "sort-az";
+    } else if (id === 4) {
+      return "sort-za";
+    } else {
+      return "sort-unfinished";
+    }
+  };
+
   return (
     <div
       className="absolute top-[60px] min-h-[260px] min-w-[235px] overflow-hidden rounded-lg border-[1px] 
@@ -16,7 +30,7 @@ const SortMenu = ({ menuSortHandler, activeSort }) => {
         >
           <div className="flex">
             <img
-              data-cy="todo-sort-button"
+              data-cy={`${dataCyHandler(item.id)}`}
               width={18}
               height={18}
               className="mr-[19px] object-contain hover:cursor-pointer"

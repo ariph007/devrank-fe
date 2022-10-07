@@ -9,7 +9,7 @@ import ActivityService from "../services/activity";
 import _ from "underscore";
 import SortMenu from "../components/SortMenu";
 import SketelonTitle from "../components/SketelonTitle";
-import truncateString from "../ultills/truncateString";
+import truncateString from "../ultils/truncateString";
 
 const DetailActivity = () => {
   const { id } = useParams();
@@ -114,7 +114,8 @@ const DetailActivity = () => {
 
   useEffect(() => {
     loadActivity();
-  }, [loadActivity]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -144,7 +145,7 @@ const DetailActivity = () => {
                 />
                 {!inputTitle ? (
                   <div
-                    data-cy="activity-title"
+                    data-cy="todo-title"
                     className="max-w-full text-base font-bold text-txtBlack md:text-4xl"
                   >
                     {!title ? <SketelonTitle /> : truncateString(title, 22)}
@@ -167,19 +168,22 @@ const DetailActivity = () => {
                   height={24}
                   className="mr-[19px] ml-[24px] object-contain hover:cursor-pointer"
                   src={require("../assets/todo-title-edit-button.png")}
-                  alt="backIcon"
+                  alt="todo-title-edit-button"
                 />
               </div>
               <div className="relative flex items-center justify-center">
-                <img
-                  onClick={sortMenuHandler}
-                  data-cy="todo-sort-button"
-                  width={54}
-                  height={54}
-                  className="mr-[19px] object-contain hover:cursor-pointer"
-                  src={require("../assets/todo-sort-button.png")}
-                  alt="sorticon"
-                />
+                {activity.length >= 1 ? (
+                  <img
+                    onClick={sortMenuHandler}
+                    data-cy="todo-sort-button"
+                    width={54}
+                    height={54}
+                    className="mr-[19px] object-contain hover:cursor-pointer"
+                    src={require("../assets/todo-sort-button.png")}
+                    alt="todo-sort-button"
+                  />
+                ) : null}
+
                 {isOpenSort && (
                   <SortMenu
                     menuSortHandler={menuSortHandler}
@@ -194,11 +198,11 @@ const DetailActivity = () => {
               </div>
             </div>
           </section>
-          {activity.todo_items <= 0 && (
+          {activity.length <= 0 && (
             <div className=" mb-24">
               <img
                 onClick={createHandler}
-                data-cy="activity-empty-state"
+                data-cy="todo-empty-state"
                 width={541}
                 height={413}
                 className="m-auto flex-1 object-contain"

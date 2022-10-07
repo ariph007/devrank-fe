@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import ConfirmationPopup from "./ConfirmationPopup";
+import EditTodoPopup from "./EditPopUp";
 
 const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
   const [confirmationPopup, setConfirmationPopup] = useState(false);
+  const [editPopup, setEditPopup] = useState(false);
+  const editHandler = () => {
+    setEditPopup(!editPopup);
+  };
 
   const bgBullet = (priority) => {
     if (priority === "high") {
@@ -23,9 +28,18 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
 
   return (
     <div
-      className="mb-[10px] flex h-[80px] min-w-[100px] cursor-pointer items-center
-     justify-between rounded-xl bg-txtWhite px-[28px] shadow-lg hover:bg-txtWhite/30"
+      className="relative mb-[10px] flex h-[80px] min-w-[100px] cursor-pointer items-center
+      rounded-xl bg-txtWhite px-[28px] shadow-lg hover:bg-txtWhite/30"
     >
+      {editPopup && (
+        <EditTodoPopup
+          refresh={refresh}
+          type="edit"
+          todo={item}
+          setEditPopup={setEditPopup}
+          editPopup={editPopup}
+        />
+      )}
       <ConfirmationPopup
         open={confirmationPopup}
         setOpen={setConfirmationPopup}
@@ -34,31 +48,51 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
         refresh={refresh}
       />
       <div className="flex items-center justify-center">
-        <input
-          className="h-[20px] w-[20px]"
-          defaultChecked={!item.is_active}
-          onChange={() =>
-            handleChangeCheck(
-              item.id,
-              item.is_active,
-              item.priority,
-              item.title
-            )
-          }
-          type="checkbox"
-        />
-        <div
-          className={`ml-[22px] mr-[16px] h-[9px] w-[9px]  rounded-full ${bgBullet(
-            item.priority
-          )}`}
-        ></div>
-        <p
-          className={`text-lg font-medium ${!item.is_active && "line-through"}`}
-        >
-          {item.title}
-        </p>
+        <div className="flex w-full min-w-full items-center justify-start ">
+          <input
+            data-cy="todo-item-checkbox"
+            className="h-[20px] w-[20px]"
+            defaultChecked={!item.is_active}
+            onChange={() =>
+              handleChangeCheck(
+                item.id,
+                item.is_active,
+                item.priority,
+                item.title
+              )
+            }
+            type="checkbox"
+          />
+          <div
+            data-cy="todo-item-priority-indicator"
+            className={`ml-[22px] mr-[16px] h-[9px] w-[9px]  rounded-full ${bgBullet(
+              item.priority
+            )}`}
+          ></div>
+          <p
+            data-cy="todo-item-title"
+            className={`text-lg font-medium ${
+              !item.is_active && "line-through"
+            }`}
+          >
+            {item.title}
+          </p>
+          <img
+            onClick={editHandler}
+            data-cy="todo-item-edit-button"
+            width={20}
+            height={20}
+            className="ml-[16px] object-contain hover:cursor-pointer"
+            src={require("../assets/todo-title-edit-button.png")}
+            alt="todo-title-edit-button"
+          />
+        </div>
       </div>
-      <div onClick={deleteHandler} data-cy="activity-item-delete-button">
+      <div
+        className="absolute right-[24px]"
+        onClick={deleteHandler}
+        data-cy="todo-item-delete-button"
+      >
         <svg
           className="h-6 w-6 text-txtGray hover:cursor-pointer hover:text-txtGray/80"
           fill="none"

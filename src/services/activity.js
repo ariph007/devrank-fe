@@ -13,7 +13,7 @@ class ActivityService {
 
   async getDetailActivity(id) {
     const response = await this.http.get(`activity-groups/${id}`);
-    return response.data.data;
+    return response.data;
   }
 
   async createActivity(comment, email, title) {
@@ -22,6 +22,16 @@ class ActivityService {
       email,
       comment,
     });
+    return response.data;
+  }
+
+  async updateActivity(activity_group_id, title) {
+    const response = await this.http.patch(
+      `activity-groups/${activity_group_id}`,
+      {
+        title,
+      }
+    );
     return response.data;
   }
 

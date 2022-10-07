@@ -1,14 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition, Listbox } from "@headlessui/react";
 import Button from "./Button";
+import TodoItemService from "../services/todoItem";
 
-const AddTodoPopup = ({
-  setTodoModal,
-  todoModal,
-  onConfirmed,
-  activity_group_id,
-}) => {
+const EditTodoPopup = ({ type, todo, setEditPopup, editPopup, refresh }) => {
   let [isOpen, setIsOpen] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [titleTodo, setTitleTodo] = useState("");
   const priorities = [
     { id: 1, name: "Very High", unavailable: false },
@@ -32,9 +29,23 @@ const AddTodoPopup = ({
     }
   };
 
-  const [selected, setSelected] = useState([]);
+  const defaultPrior = (prior) => {
+    if (prior === "very-high") {
+      return { id: 1, name: "Very High", unavailable: false };
+    } else if (prior === "high") {
+      return { id: 2, name: "High", unavailable: false };
+    } else if (prior === "medium") {
+      return { id: 3, name: "Medium", unavailable: false };
+    } else if (prior === "low") {
+      return { id: 4, name: "Low", unavailable: true };
+    } else {
+      return { id: 5, name: "Very Low", unavailable: false };
+    }
+  };
 
-  function saveTodo() {
+  const [selected, setSelected] = useState(defaultPrior(todo.priority));
+
+  const saveTodo = async () => {
     let prior = null;
     if (selected.id === 1) {
       prior = "very-high";
@@ -50,16 +61,18 @@ const AddTodoPopup = ({
       prior = "very-high";
     }
     const title = document.getElementById("titleName").value;
+    await TodoItemService.updateTodo(todo.id, todo.is_active, prior, title);
     setIsOpen(false);
-    setTodoModal(!todoModal);
-    onConfirmed(activity_group_id, prior, title);
-  }
+    refresh();
+  };
 
   function closeModal() {
-    setTodoModal(!todoModal);
+    setEditPopup(!editPopup);
   }
 
-  useEffect(() => {}, [selected]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected]);
 
   return (
     <div className="relative">
@@ -94,12 +107,12 @@ const AddTodoPopup = ({
                       as="h3"
                       className="mt-[24px] mb-[19px] px-6 text-lg font-semibold leading-6 text-txtBlack"
                     >
-                      <p data-cy="modal-add-title">Tambah List Item</p>
+                      <p>Tambah List Item</p>
                     </Dialog.Title>
                     <div className="mr-[41px]">
                       <img
                         onClick={closeModal}
-                        data-cy="modal-add-close-button"
+                        data-cy="tabler_chevron-down"
                         width={24}
                         height={24}
                         className="mt-[40px] mb-[34px] object-contain hover:cursor-pointer"
@@ -110,25 +123,22 @@ const AddTodoPopup = ({
                   </div>
                   <div className="mt-[38px] px-6">
                     <label
-                      data-cy="modal-add-name-title"
                       htmlFor="titleName"
                       className="mt-[24px] mb-[9px] p-0 text-left text-xs font-semibold leading-6 text-txtBlack"
                     >
                       NAMA LIST ITEM
                     </label>
                     <input
-                      data-cy="modal-add-name-input"
                       type="text"
                       id="titleName"
                       className="mb-[26px] block h-[52px] w-full rounded-lg border border-[#E5E5E5] bg-txtWhite 
                       p-2.5 text-base font-normal  text-txtBlack focus:border-blue-500 focus:outline-blue-500
                        focus:ring-blue-500"
-                      placeholder="Tambahkan nama list item"
+                      defaultValue={todo.title}
                       onChange={(e) => setTitleTodo(e.target.value)}
                       required
                     />
                     <label
-                      data-cy="modal-add-priority-title"
                       htmlFor="priority"
                       className="mb-[26px]  p-0 text-left text-xs font-semibold leading-6 text-txtBlack"
                     >
@@ -136,10 +146,7 @@ const AddTodoPopup = ({
                     </label>
 
                     <Listbox value={selected} onChange={setSelected}>
-                      <div
-                        data-cy="modal-add-priority-dropdown"
-                        className="mt-1 max-w-[205px] "
-                      >
+                      <div className="mt-1 max-w-[205px] ">
                         <Listbox.Button
                           className="relative h-[52px] w-full cursor-default rounded-lg border-[1px]  
                         border-[#E5E5E5] bg-white pl-3 pr-10 text-left focus:outline-none 
@@ -148,7 +155,11 @@ const AddTodoPopup = ({
                         focus-visible:ring-offset-orange-300 sm:text-sm"
                         >
                           <span className="flex items-center truncate ">
-                            <div className="mr-[19px] h-[9px] w-[9px] rounded-full" />
+                            <div
+                              className={`ml-1 mr-[19px] h-[9px] w-[9px] rounded-full ${bgBullet(
+                                selected.id
+                              )}`}
+                            />
                             {selected.length === 0
                               ? "Pilih Priority"
                               : selected.name}
@@ -216,18 +227,7 @@ const AddTodoPopup = ({
 
                   <div className="mt-[23px]  w-full border-t-[1px] border-[#E5E5E5] px-6 pb-[18px]">
                     <div className="mb-[16px] flex justify-end pt-[18px]">
-                      {!titleTodo ? (
-                        <Button
-                          data-cy="modal-add-save-button"
-                          type="simpanDisable"
-                        />
-                      ) : (
-                        <Button
-                          data-cy="modal-add-save-button"
-                          type="simpan"
-                          onClick={saveTodo}
-                        />
-                      )}
+                      <Button type="simpan" onClick={saveTodo} />
                     </div>
                   </div>
                 </Dialog.Panel>
@@ -240,4 +240,4 @@ const AddTodoPopup = ({
   );
 };
 
-export default AddTodoPopup;
+export default EditTodoPopup;
