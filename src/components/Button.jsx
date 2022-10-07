@@ -6,7 +6,7 @@ const Button = ({ type, opacity, onClick, loadingComponent, dataCy }) => {
     return loadingComponent ? (
       <button
         disabled
-        dta-cy={dataCy}
+        data-cy={dataCy}
         className={`bg- flex h-9 w-24 items-center justify-center rounded-[45px]
         ${bgOpacity} ${
           !opacity && "cursor-wait bg-primary hover:bg-primary/80"
@@ -28,16 +28,11 @@ const Button = ({ type, opacity, onClick, loadingComponent, dataCy }) => {
             fill="currentColor"
           />
         </svg>
-        <p
-          className="text-xs font-semibold text-txtWhite md:text-lg"
-          dta-cy="todo-add-button"
-        >
-          Tambah
-        </p>
+        <p className="text-xs font-semibold text-txtWhite md:text-lg">Tambah</p>
       </button>
     ) : (
       <button
-        dta-cy={dataCy}
+        data-cy={dataCy}
         className={`bg- flex h-9 w-24 items-center justify-center rounded-[45px]
         ${bgOpacity} ${
           !opacity && "cursor-pointer bg-primary hover:bg-primary/80"
@@ -59,52 +54,41 @@ const Button = ({ type, opacity, onClick, loadingComponent, dataCy }) => {
   } else if (type === "simpan") {
     return (
       <button
+        data-cy={dataCy}
         className="flex h-9 w-24 cursor-pointer items-center justify-center
       rounded-[45px] bg-primary transition hover:bg-primary/80  md:h-14 md:w-40"
         onClick={onClick}
       >
-        <p
-          className="text-xs font-semibold text-txtWhite md:text-lg"
-          dta-cy="Simpan"
-        >
-          Simpan
-        </p>
+        <p className="text-xs font-semibold text-txtWhite md:text-lg">Simpan</p>
       </button>
     );
   } else if (type === "batal") {
     return (
       <button
+        data-cy={dataCy}
         className="flex h-9 w-24 cursor-pointer items-center justify-center
       rounded-[45px] bg-txtGray transition hover:bg-txtGray/80  md:h-14 md:w-40"
         onClick={onClick}
       >
-        <p
-          className="text-xs font-semibold text-txtWhite md:text-lg"
-          dta-cy="Batal"
-        >
-          Batal
-        </p>
+        <p className="text-xs font-semibold text-txtWhite md:text-lg">Batal</p>
       </button>
     );
   } else if (type === "simpanDisable") {
     return (
       <button
+        data-cy={dataCy}
         disabled
         className={`bg- flex h-9 w-24 cursor-not-allowed items-center
     justify-center rounded-[45px] bg-primary/60 transition
      md:h-14 md:w-40`}
       >
-        <p
-          className="text-xs font-semibold text-txtWhite md:text-lg"
-          dta-cy="Tambah"
-        >
-          Simpan
-        </p>
+        <p className="text-xs font-semibold text-txtWhite md:text-lg">Simpan</p>
       </button>
     );
   } else {
     return loadingComponent ? (
       <button
+        data-cy={dataCy}
         disabled
         className="flex h-9 w-24 cursor-not-allowed items-center justify-center
   rounded-[45px] bg-danger transition hover:bg-danger/80  md:h-14 md:w-40"
@@ -125,25 +109,18 @@ const Button = ({ type, opacity, onClick, loadingComponent, dataCy }) => {
             fill="currentColor"
           />
         </svg>
-        <p
-          className="text-xs font-semibold text-txtWhite md:text-lg"
-          dta-cy="Hapus"
-        >
+        <p className="text-xs font-semibold text-txtWhite md:text-lg">
           Loading...
         </p>
       </button>
     ) : (
       <button
+        data-cy={dataCy}
         className="flex h-9 w-24 cursor-pointer items-center justify-center
 rounded-[45px] bg-danger transition hover:bg-danger/80  md:h-14 md:w-40"
         onClick={onClick}
       >
-        <p
-          className="text-xs font-semibold text-txtWhite md:text-lg"
-          dta-cy="Hapus"
-        >
-          Hapus
-        </p>
+        <p className="text-xs font-semibold text-txtWhite md:text-lg">Hapus</p>
       </button>
     );
   }

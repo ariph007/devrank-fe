@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import Button from "./Button";
 import ActivityService from "../services/activity";
 import TodoItemService from "../services/todoItem";
+import AlertActivity from "./AlertActivity";
 
 const ConfirmationPopup = ({
   open,
@@ -17,6 +18,7 @@ const ConfirmationPopup = ({
     setOpen(false);
   }
 
+  const [alertComponent, setAlertComponent] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const deleteTodo = async (id) => {
@@ -24,6 +26,7 @@ const ConfirmationPopup = ({
     await TodoItemService.deleteSingleTodo(id);
     setLoading(false);
     setOpen(false);
+    setAlertComponent(!alertComponent);
     refresh();
   };
   const onDeleteActivity = async (id) => {
@@ -52,7 +55,11 @@ const ConfirmationPopup = ({
           <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto">
+        <div data-cy="modal-delete" className="fixed inset-0 overflow-y-auto">
+          <AlertActivity
+            alertComponent={alertComponent}
+            setAlertComponent={setAlertComponent}
+          />
           <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
@@ -80,22 +87,32 @@ const ConfirmationPopup = ({
                     data-cy="modal-delete-title"
                     className="text-center text-lg font-medium text-txtBlack "
                   >
-                    Apakah anda yakin ingin menghapus ?
+                    Apakah anda yakin ingin menghapus
+                    {page === "dashboard" ? (
+                      <p className="text-lg font-bold">
+                        {" "}
+                        "{selectedActivity[1]}"?
+                      </p>
+                    ) : (
+                      <p className="text-lg font-bold">
+                        "{todo.title}"{" "}
+                        <span className="text-center text-lg font-medium text-txtBlack">
+                          ?
+                        </span>
+                      </p>
+                    )}
                   </p>
-                  {page === "dashboard" ? (
-                    <p className="text-lg font-bold">
-                      {" "}
-                      "{selectedActivity[1]}"?
-                    </p>
-                  ) : (
-                    <p>Detail Page</p>
-                  )}
                 </div>
 
                 <div className="mt-4 flex justify-between gap-x-5">
-                  <Button type="batal" onClick={closeModal} />
+                  <Button
+                    dataCy="modal-delete-cancel-button"
+                    type="batal"
+                    onClick={closeModal}
+                  />
                   {page === "dashboard" ? (
                     <Button
+                      dataCy="modal-delete-confirm-button"
                       type="hapus"
                       loadingComponent={loading}
                       onClick={() => onDeleteActivity(selectedActivity[0])}

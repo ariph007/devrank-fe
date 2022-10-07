@@ -18,6 +18,20 @@ const AddTodoPopup = ({
     { id: 5, name: "Very Low", unavailable: false },
   ];
 
+  const dataCyHandler = (id) => {
+    if (id === 2) {
+      return "modal-add-priority-high";
+    } else if (id === 3) {
+      return "modal-add-priority-medium";
+    } else if (id === 4) {
+      return "modal-add-priority-low";
+    } else if (id === 5) {
+      return "modal-add-priority-very-low";
+    } else {
+      return "modal-add-priority-very-high";
+    }
+  };
+
   const bgBullet = (priority) => {
     if (priority === 2) {
       return " bg-[#F8A541]";
@@ -62,7 +76,7 @@ const AddTodoPopup = ({
   useEffect(() => {}, [selected]);
 
   return (
-    <div className="relative">
+    <div data-cy="modal-add" className="relative">
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={saveTodo}>
           <Transition.Child
@@ -94,10 +108,11 @@ const AddTodoPopup = ({
                       as="h3"
                       className="mt-[24px] mb-[19px] px-6 text-lg font-semibold leading-6 text-txtBlack"
                     >
-                      <p>Tambah List Item</p>
+                      <p data-cy="modal-add-title">Tambah List Item</p>
                     </Dialog.Title>
                     <div className="mr-[41px]">
                       <img
+                        data-cy="modal-add-close-button"
                         onClick={closeModal}
                         width={24}
                         height={24}
@@ -109,12 +124,14 @@ const AddTodoPopup = ({
                   </div>
                   <div className="mt-[38px] px-6">
                     <label
+                      data-cy="modal-add-name-title"
                       htmlFor="titleName"
                       className="mt-[24px] mb-[9px] p-0 text-left text-xs font-semibold leading-6 text-txtBlack"
                     >
                       NAMA LIST ITEM
                     </label>
                     <input
+                      data-cy="modal-add-name-input"
                       type="text"
                       id="titleName"
                       className="mb-[26px] block h-[52px] w-full rounded-lg border border-[#E5E5E5] bg-txtWhite 
@@ -125,6 +142,7 @@ const AddTodoPopup = ({
                       required
                     />
                     <label
+                      data-cy="modal-add-priority-title"
                       htmlFor="priority"
                       className="mb-[26px]  p-0 text-left text-xs font-semibold leading-6 text-txtBlack"
                     >
@@ -134,13 +152,17 @@ const AddTodoPopup = ({
                     <Listbox value={selected} onChange={setSelected}>
                       <div className="mt-1 max-w-[205px] ">
                         <Listbox.Button
+                          data-cy="modal-add-priority-dropdown"
                           className="relative h-[52px] w-full cursor-default rounded-lg border-[1px]  
                         border-[#E5E5E5] bg-white pl-3 pr-10 text-left focus:outline-none 
                         focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white 
                         focus-visible:ring-opacity-75 focus-visible:ring-offset-2 
                         focus-visible:ring-offset-orange-300 sm:text-sm"
                         >
-                          <span className="flex items-center truncate ">
+                          <span
+                            data-cy="modal-add-priority-item"
+                            className="flex items-center truncate "
+                          >
                             <div className="mr-[19px] h-[9px] w-[9px] rounded-full" />
                             {selected.length === 0
                               ? "Pilih Priority"
@@ -168,6 +190,7 @@ const AddTodoPopup = ({
                           >
                             {priorities.map((priority, priorityIdx) => (
                               <Listbox.Option
+                                data-cy={dataCyHandler(priority.id)}
                                 key={priorityIdx}
                                 className={({ active }) =>
                                   `relative cursor-default select-none overflow-auto py-2 px-[17px] ${
@@ -208,9 +231,16 @@ const AddTodoPopup = ({
                   <div className="mt-[23px]  w-full border-t-[1px] border-[#E5E5E5] px-6 pb-[18px]">
                     <div className="mb-[16px] flex justify-end pt-[18px]">
                       {!titleTodo ? (
-                        <Button type="simpanDisable" />
+                        <Button
+                          dataCy="modal-add-save-button"
+                          type="simpanDisable"
+                        />
                       ) : (
-                        <Button type="simpan" onClick={saveTodo} />
+                        <Button
+                          dataCy="modal-add-save-button"
+                          type="simpan"
+                          onClick={saveTodo}
+                        />
                       )}
                     </div>
                   </div>

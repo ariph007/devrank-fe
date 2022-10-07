@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ConfirmationPopup from "./ConfirmationPopup";
 import EditTodoPopup from "./EditPopUp";
 
-const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
+const TodoListItem = ({ item, refresh, handleChangeCheck, dataCy }) => {
   const [confirmationPopup, setConfirmationPopup] = useState(false);
   const [editPopup, setEditPopup] = useState(false);
   const editHandler = () => {
@@ -28,6 +28,7 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
 
   return (
     <div
+      data-cy={dataCy}
       className="relative mb-[10px] flex h-[80px] min-w-[100px] cursor-pointer items-center
       rounded-xl bg-txtWhite px-[28px] shadow-lg hover:bg-txtWhite/30"
     >
@@ -50,6 +51,7 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
       <div className="flex items-center justify-center">
         <div className="flex w-full min-w-full items-center justify-start ">
           <input
+            data-cy="todo-item-checkbox"
             className="h-[20px] w-[20px]"
             defaultChecked={!item.is_active}
             onChange={() =>
@@ -63,11 +65,13 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
             type="checkbox"
           />
           <div
+            data-cy="todo-item-priority-indicator"
             className={`ml-[22px] mr-[16px] h-[9px] w-[9px]  rounded-full ${bgBullet(
               item.priority
             )}`}
           ></div>
           <p
+            data-cy="todo-item-title"
             className={`text-lg font-medium ${
               !item.is_active && "line-through"
             }`}
@@ -75,6 +79,7 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
             {item.title}
           </p>
           <img
+            data-cy="todo-item-edit-button"
             onClick={editHandler}
             width={20}
             height={20}
@@ -84,7 +89,11 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
           />
         </div>
       </div>
-      <div className="absolute right-[24px]" onClick={deleteHandler}>
+      <div
+        data-cy="todo-item-delete-button"
+        className="absolute right-[24px]"
+        onClick={deleteHandler}
+      >
         <svg
           className="h-6 w-6 text-txtGray hover:cursor-pointer hover:text-txtGray/80"
           fill="none"

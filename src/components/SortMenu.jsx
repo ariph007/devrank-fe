@@ -23,6 +23,7 @@ const SortMenu = ({ menuSortHandler, activeSort }) => {
     >
       {sort?.map((item) => (
         <div
+          data-cy={dataCyHandler(item.id)}
           onClick={() => menuSortHandler(item.id)}
           className="flex h-[52px] w-[235px] cursor-pointer  items-center justify-between 
                       px-[21px] hover:bg-blue-100"
@@ -30,7 +31,6 @@ const SortMenu = ({ menuSortHandler, activeSort }) => {
         >
           <div className="flex">
             <img
-              data-cy={`${dataCyHandler(item.id)}`}
               width={18}
               height={18}
               className="mr-[19px] object-contain hover:cursor-pointer"
@@ -41,7 +41,6 @@ const SortMenu = ({ menuSortHandler, activeSort }) => {
           </div>
           {item.id === activeSort && (
             <img
-              data-cy="tabler_check"
               width={18}
               height={18}
               className="object-contain"

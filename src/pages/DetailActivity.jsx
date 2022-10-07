@@ -135,6 +135,7 @@ const DetailActivity = () => {
             <div className="mb-[54px] flex justify-between">
               <div className="flex items-center justify-center">
                 <img
+                  data-cy="todo-back-button"
                   onClick={backHandler}
                   width={32}
                   height={32}
@@ -144,6 +145,7 @@ const DetailActivity = () => {
                 />
                 {!inputTitle ? (
                   <div
+                    data-cy="todo-title"
                     onClick={editTitle}
                     className="max-w-full text-base font-bold text-txtBlack md:text-4xl"
                   >
@@ -161,6 +163,7 @@ const DetailActivity = () => {
                 )}
 
                 <img
+                  data-cy="todo-title-edit-button"
                   onClick={editTitle}
                   width={24}
                   height={24}
@@ -171,6 +174,7 @@ const DetailActivity = () => {
               </div>
               <div className="relative flex items-center justify-center">
                 <img
+                  data-cy="todo-sort-button"
                   onClick={sortMenuHandler}
                   width={54}
                   height={54}
@@ -185,6 +189,7 @@ const DetailActivity = () => {
                   />
                 )}
                 <Button
+                  dataCy="todo-add-button"
                   type="tambah"
                   onClick={createHandler}
                   loadingComponent={loading}
@@ -195,6 +200,7 @@ const DetailActivity = () => {
           {activity.length <= 0 && (
             <div className=" mb-24">
               <img
+                data-cy="todo-empty-state"
                 onClick={createHandler}
                 width={541}
                 height={413}
@@ -207,6 +213,7 @@ const DetailActivity = () => {
           <section>
             {activity?.map((item) => (
               <TodoListItem
+                dataCy="todo-item"
                 refresh={loadActivity}
                 key={item.id}
                 item={item}

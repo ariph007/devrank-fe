@@ -1,24 +1,40 @@
 import React from "react";
 
-const CardActivity = ({ title, created, id, onDelete, onClickCard }) => {
+const CardActivity = ({
+  title,
+  created,
+  id,
+  onDelete,
+  onClickCard,
+  dataCy,
+}) => {
   let dateCreated = new Date(created).toLocaleDateString("id-ID", {
     dateStyle: "long",
   });
 
   return (
     <div
+      data-cy={dataCy}
       key={id}
       className="flex h-[150px] w-[150px] cursor-pointer flex-col justify-between rounded-[12px] bg-txtWhite
     px-[17px] py-[17px] shadow-lg transition hover:shadow-2xl md:h-[234px] md:w-[234px] md:px-[26px] md:py-[25px]"
     >
       <div onClick={() => onClickCard(id)} className="h-full w-full">
-        <p className="text-sm font-bold text-txtBlack md:text-lg">{title}</p>
+        <p
+          data-cy="activity-item-title"
+          className="text-sm font-bold text-txtBlack md:text-lg"
+        >
+          {title}
+        </p>
       </div>
       <div className="flex justify-between ">
-        <p className="flex cursor-default items-center text-[10px] font-medium text-txtGray md:text-sm">
+        <p
+          activity-item-date
+          className="flex cursor-default items-center text-[10px] font-medium text-txtGray md:text-sm"
+        >
           {dateCreated}
         </p>
-        <div onClick={onDelete}>
+        <div data-cy="activity-item-delete-button" onClick={onDelete}>
           <svg
             className="h-6 w-6 text-txtGray hover:cursor-pointer hover:text-txtGray/80"
             fill="none"
