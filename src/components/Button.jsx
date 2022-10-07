@@ -6,12 +6,11 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
     return loadingComponent ? (
       <button
         disabled
-        dta-cy="todo-add-button"
+        dta-cy="activity-add-button"
         className={`bg- flex h-9 w-24 items-center justify-center rounded-[45px]
         ${bgOpacity} ${
           !opacity && "cursor-wait bg-primary hover:bg-primary/80"
         } transition  md:h-14 md:w-40`}
-        // onClick={onClick}
       >
         <svg
           role="status"
@@ -38,7 +37,7 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
       </button>
     ) : (
       <button
-        dta-cy="todo-add-button"
+        dta-cy="activity-add-button"
         className={`bg- flex h-9 w-24 items-center justify-center rounded-[45px]
         ${bgOpacity} ${
           !opacity && "cursor-pointer bg-primary hover:bg-primary/80"

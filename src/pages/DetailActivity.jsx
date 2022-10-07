@@ -192,6 +192,7 @@ const DetailActivity = () => {
                   />
                 )}
                 <Button
+                  data-cy="todo-add-button"
                   type="tambah"
                   onClick={createHandler}
                   loadingComponent={loading}
