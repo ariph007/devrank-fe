@@ -11,7 +11,11 @@ const CardActivity = ({ title, created, id, onDelete, onClickCard }) => {
       className="flex h-[150px] w-[150px] cursor-pointer flex-col justify-between rounded-[12px] bg-txtWhite
     px-[17px] py-[17px] shadow-lg transition hover:shadow-2xl md:h-[234px] md:w-[234px] md:px-[26px] md:py-[25px]"
     >
-      <div onClick={() => onClickCard(id)} className="h-full w-full">
+      <div
+        data-cy="activity-item"
+        onClick={() => onClickCard(id)}
+        className="h-full w-full"
+      >
         <p
           data-cy="activity-item-title"
           className="text-sm font-bold text-txtBlack md:text-lg"
