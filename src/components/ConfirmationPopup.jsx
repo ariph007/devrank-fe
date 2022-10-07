@@ -39,7 +39,12 @@ const ConfirmationPopup = ({
 
   return (
     <Transition appear show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Dialog
+        data-cy="modal-delete"
+        as="div"
+        className="relative z-10"
+        onClose={closeModal}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
