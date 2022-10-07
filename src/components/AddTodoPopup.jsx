@@ -135,11 +135,12 @@ const AddTodoPopup = ({
                       PRIORITY
                     </label>
 
-                    <Listbox value={selected} onChange={setSelected}>
-                      <div
-                        data-cy="modal-add-priority-dropdown"
-                        className="mt-1 max-w-[205px] "
-                      >
+                    <Listbox
+                      data-cy="modal-add-priority-dropdown"
+                      value={selected}
+                      onChange={setSelected}
+                    >
+                      <div className="mt-1 max-w-[205px] ">
                         <Listbox.Button
                           className="relative h-[52px] w-full cursor-default rounded-lg border-[1px]  
                         border-[#E5E5E5] bg-white pl-3 pr-10 text-left focus:outline-none 
@@ -148,7 +149,10 @@ const AddTodoPopup = ({
                         focus-visible:ring-offset-orange-300 sm:text-sm"
                         >
                           <span className="flex items-center truncate ">
-                            <div className="mr-[19px] h-[9px] w-[9px] rounded-full" />
+                            <div
+                              data-cy="modal-add-priority-item"
+                              className="mr-[19px] h-[9px] w-[9px] rounded-full"
+                            />
                             {selected.length === 0
                               ? "Pilih Priority"
                               : selected.name}
