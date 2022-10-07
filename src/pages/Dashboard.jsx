@@ -72,7 +72,7 @@ const Dashboard = () => {
               Activity
             </p>
             <Button
-              data-cy="activity-add-button"
+              dataCy="activity-add-button"
               type="tambah"
               onClick={onCreateActivity}
               loadingComponent={loading}

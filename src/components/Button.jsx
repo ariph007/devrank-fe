@@ -1,12 +1,12 @@
 import React from "react";
 
-const Button = ({ type, opacity, onClick, loadingComponent }) => {
+const Button = ({ type, opacity, onClick, loadingComponent, dataCy }) => {
   if (type === "tambah") {
     const bgOpacity = `bg-primary/${opacity} cursor-default`;
     return loadingComponent ? (
       <button
         disabled
-        dta-cy="activity-add-button"
+        dta-cy={dataCy}
         className={`bg- flex h-9 w-24 items-center justify-center rounded-[45px]
         ${bgOpacity} ${
           !opacity && "cursor-wait bg-primary hover:bg-primary/80"
@@ -37,7 +37,7 @@ const Button = ({ type, opacity, onClick, loadingComponent }) => {
       </button>
     ) : (
       <button
-        dta-cy="activity-add-button"
+        dta-cy={dataCy}
         className={`bg- flex h-9 w-24 items-center justify-center rounded-[45px]
         ${bgOpacity} ${
           !opacity && "cursor-pointer bg-primary hover:bg-primary/80"
