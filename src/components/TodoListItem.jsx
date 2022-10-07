@@ -50,7 +50,6 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
       <div className="flex items-center justify-center">
         <div className="flex w-full min-w-full items-center justify-start ">
           <input
-            data-cy="todo-item-checkbox"
             className="h-[20px] w-[20px]"
             defaultChecked={!item.is_active}
             onChange={() =>
@@ -64,13 +63,11 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
             type="checkbox"
           />
           <div
-            data-cy="todo-item-priority-indicator"
             className={`ml-[22px] mr-[16px] h-[9px] w-[9px]  rounded-full ${bgBullet(
               item.priority
             )}`}
           ></div>
           <p
-            data-cy="todo-item-title"
             className={`text-lg font-medium ${
               !item.is_active && "line-through"
             }`}
@@ -79,7 +76,6 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
           </p>
           <img
             onClick={editHandler}
-            data-cy="todo-item-edit-button"
             width={20}
             height={20}
             className="ml-[16px] object-contain hover:cursor-pointer"
@@ -88,11 +84,7 @@ const TodoListItem = ({ item, refresh, handleChangeCheck }) => {
           />
         </div>
       </div>
-      <div
-        data-cy="modal-delete-confirm-button"
-        className="absolute right-[24px]"
-        onClick={deleteHandler}
-      >
+      <div className="absolute right-[24px]" onClick={deleteHandler}>
         <svg
           className="h-6 w-6 text-txtGray hover:cursor-pointer hover:text-txtGray/80"
           fill="none"

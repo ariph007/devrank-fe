@@ -112,7 +112,6 @@ const EditTodoPopup = ({ type, todo, setEditPopup, editPopup, refresh }) => {
                     <div className="mr-[41px]">
                       <img
                         onClick={closeModal}
-                        data-cy="tabler_chevron-down"
                         width={24}
                         height={24}
                         className="mt-[40px] mb-[34px] object-contain hover:cursor-pointer"
@@ -166,7 +165,6 @@ const EditTodoPopup = ({ type, todo, setEditPopup, editPopup, refresh }) => {
                           </span>
                           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <img
-                              data-cy="tabler_chevron-down"
                               width={24}
                               height={24}
                               className="mt-[40px] mb-[34px] object-contain"
@@ -207,7 +205,6 @@ const EditTodoPopup = ({ type, todo, setEditPopup, editPopup, refresh }) => {
                                     <p className="text-left">{priority.name}</p>
                                     {selected.id === priority.id && (
                                       <img
-                                        data-cy="tabler_check"
                                         width={18}
                                         height={18}
                                         className="object-contain"

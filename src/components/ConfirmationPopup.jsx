@@ -39,12 +39,7 @@ const ConfirmationPopup = ({
 
   return (
     <Transition appear show={open} as={Fragment}>
-      <Dialog
-        data-cy="modal-delete"
-        as="div"
-        className="relative z-10"
-        onClose={closeModal}
-      >
+      <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -69,14 +64,10 @@ const ConfirmationPopup = ({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                data-cy="modal-delete"
                 className="h-[355px] w-[490px] max-w-md transform overflow-hidden 
               rounded-2xl bg-white px-[40px] text-left align-middle shadow-xl transition-all 2xl:px-[62px]"
               >
-                <div
-                  data-cy="modal-delete"
-                  className="mt-2 flex flex-col items-center justify-center"
-                >
+                <div className="mt-2 flex flex-col items-center justify-center">
                   <img
                     data-cy="modal-delete-icon"
                     width={84}

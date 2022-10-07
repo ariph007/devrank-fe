@@ -136,7 +136,6 @@ const DetailActivity = () => {
               <div className="flex items-center justify-center">
                 <img
                   onClick={backHandler}
-                  data-cy="todo-back-button"
                   width={32}
                   height={32}
                   className="mr-[19px] object-contain hover:cursor-pointer"
@@ -146,7 +145,6 @@ const DetailActivity = () => {
                 {!inputTitle ? (
                   <div
                     onClick={editTitle}
-                    data-cy="todo-title"
                     className="max-w-full text-base font-bold text-txtBlack md:text-4xl"
                   >
                     {!title ? <SketelonTitle /> : truncateString(title, 22)}
@@ -164,7 +162,6 @@ const DetailActivity = () => {
 
                 <img
                   onClick={editTitle}
-                  data-cy="todo-title-edit-button"
                   width={24}
                   height={24}
                   className="mr-[19px] ml-[24px] object-contain hover:cursor-pointer"
@@ -175,14 +172,12 @@ const DetailActivity = () => {
               <div className="relative flex items-center justify-center">
                 <img
                   onClick={sortMenuHandler}
-                  data-cy="todo-sort-button"
                   width={54}
                   height={54}
                   className="mr-[19px] object-contain hover:cursor-pointer"
                   src={require("../assets/todo-sort-button.png")}
                   alt="todo-sort-button"
                 />
-                )
                 {isOpenSort && (
                   <SortMenu
                     menuSortHandler={menuSortHandler}
@@ -190,7 +185,6 @@ const DetailActivity = () => {
                   />
                 )}
                 <Button
-                  data-cy="todo-add-button"
                   type="tambah"
                   onClick={createHandler}
                   loadingComponent={loading}
@@ -202,7 +196,6 @@ const DetailActivity = () => {
             <div className=" mb-24">
               <img
                 onClick={createHandler}
-                data-cy="todo-empty-state"
                 width={541}
                 height={413}
                 className="m-auto flex-1 object-contain"

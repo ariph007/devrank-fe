@@ -11,26 +11,14 @@ const CardActivity = ({ title, created, id, onDelete, onClickCard }) => {
       className="flex h-[150px] w-[150px] cursor-pointer flex-col justify-between rounded-[12px] bg-txtWhite
     px-[17px] py-[17px] shadow-lg transition hover:shadow-2xl md:h-[234px] md:w-[234px] md:px-[26px] md:py-[25px]"
     >
-      <div
-        data-cy="activity-item"
-        onClick={() => onClickCard(id)}
-        className="h-full w-full"
-      >
-        <p
-          data-cy="activity-item-title"
-          className="text-sm font-bold text-txtBlack md:text-lg"
-        >
-          {title}
-        </p>
+      <div onClick={() => onClickCard(id)} className="h-full w-full">
+        <p className="text-sm font-bold text-txtBlack md:text-lg">{title}</p>
       </div>
       <div className="flex justify-between ">
-        <p
-          data-cy="activity-item-date"
-          className="flex cursor-default items-center text-[10px] font-medium text-txtGray md:text-sm"
-        >
+        <p className="flex cursor-default items-center text-[10px] font-medium text-txtGray md:text-sm">
           {dateCreated}
         </p>
-        <div onClick={onDelete} data-cy="activity-item-delete-button">
+        <div onClick={onDelete}>
           <svg
             className="h-6 w-6 text-txtGray hover:cursor-pointer hover:text-txtGray/80"
             fill="none"

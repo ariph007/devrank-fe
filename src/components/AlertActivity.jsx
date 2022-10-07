@@ -8,12 +8,7 @@ const AlertActivity = ({ alertComponent, setAlertComponent }) => {
 
   return (
     <Transition appear show={alertComponent} as={Fragment}>
-      <Dialog
-        data-cy="=modal-information"
-        as="div"
-        className="relative z-10"
-        onClose={closeModal}
-      >
+      <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -41,22 +36,15 @@ const AlertActivity = ({ alertComponent, setAlertComponent }) => {
                 className=" h-[58px] w-[490px] max-w-md transform overflow-hidden
               rounded-2xl bg-white px-[40px] text-left align-middle shadow-xl transition-all 2xl:px-[62px]"
               >
-                <div
-                  data-cy="modal-information"
-                  className=" flex h-full w-full items-center "
-                >
+                <div className=" flex h-full w-full items-center ">
                   <img
-                    data-cy="modal-information-icon"
                     width={24}
                     height={24}
                     className="object-contain"
                     src={require("../assets/modal-information-icon.png")}
                     alt="information icon"
                   />
-                  <p
-                    data-cy="modal-information-title"
-                    className="pl-[10px] text-center text-lg font-medium text-txtBlack "
-                  >
+                  <p className="pl-[10px] text-center text-lg font-medium text-txtBlack ">
                     Activity berhasil dihapus
                   </p>
                 </div>

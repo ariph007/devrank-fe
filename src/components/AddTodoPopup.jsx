@@ -94,12 +94,11 @@ const AddTodoPopup = ({
                       as="h3"
                       className="mt-[24px] mb-[19px] px-6 text-lg font-semibold leading-6 text-txtBlack"
                     >
-                      <p data-cy="modal-add-title">Tambah List Item</p>
+                      <p>Tambah List Item</p>
                     </Dialog.Title>
                     <div className="mr-[41px]">
                       <img
                         onClick={closeModal}
-                        data-cy="modal-add-close-button"
                         width={24}
                         height={24}
                         className="mt-[40px] mb-[34px] object-contain hover:cursor-pointer"
@@ -110,14 +109,12 @@ const AddTodoPopup = ({
                   </div>
                   <div className="mt-[38px] px-6">
                     <label
-                      data-cy="modal-add-name-title"
                       htmlFor="titleName"
                       className="mt-[24px] mb-[9px] p-0 text-left text-xs font-semibold leading-6 text-txtBlack"
                     >
                       NAMA LIST ITEM
                     </label>
                     <input
-                      data-cy="modal-add-name-input"
                       type="text"
                       id="titleName"
                       className="mb-[26px] block h-[52px] w-full rounded-lg border border-[#E5E5E5] bg-txtWhite 
@@ -128,18 +125,13 @@ const AddTodoPopup = ({
                       required
                     />
                     <label
-                      data-cy="modal-add-priority-title"
                       htmlFor="priority"
                       className="mb-[26px]  p-0 text-left text-xs font-semibold leading-6 text-txtBlack"
                     >
                       PRIORITY
                     </label>
 
-                    <Listbox
-                      data-cy="modal-add-priority-dropdown"
-                      value={selected}
-                      onChange={setSelected}
-                    >
+                    <Listbox value={selected} onChange={setSelected}>
                       <div className="mt-1 max-w-[205px] ">
                         <Listbox.Button
                           className="relative h-[52px] w-full cursor-default rounded-lg border-[1px]  
@@ -149,17 +141,13 @@ const AddTodoPopup = ({
                         focus-visible:ring-offset-orange-300 sm:text-sm"
                         >
                           <span className="flex items-center truncate ">
-                            <div
-                              data-cy="modal-add-priority-item"
-                              className="mr-[19px] h-[9px] w-[9px] rounded-full"
-                            />
+                            <div className="mr-[19px] h-[9px] w-[9px] rounded-full" />
                             {selected.length === 0
                               ? "Pilih Priority"
                               : selected.name}
                           </span>
                           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <img
-                              data-cy="tabler_chevron-down"
                               width={24}
                               height={24}
                               className="mt-[40px] mb-[34px] object-contain"
@@ -200,7 +188,6 @@ const AddTodoPopup = ({
                                     <p className="text-left">{priority.name}</p>
                                     {selected.id === priority.id && (
                                       <img
-                                        data-cy="tabler_check"
                                         width={18}
                                         height={18}
                                         className="object-contain"
@@ -221,16 +208,9 @@ const AddTodoPopup = ({
                   <div className="mt-[23px]  w-full border-t-[1px] border-[#E5E5E5] px-6 pb-[18px]">
                     <div className="mb-[16px] flex justify-end pt-[18px]">
                       {!titleTodo ? (
-                        <Button
-                          data-cy="modal-add-save-button"
-                          type="simpanDisable"
-                        />
+                        <Button type="simpanDisable" />
                       ) : (
-                        <Button
-                          data-cy="modal-add-save-button"
-                          type="simpan"
-                          onClick={saveTodo}
-                        />
+                        <Button type="simpan" onClick={saveTodo} />
                       )}
                     </div>
                   </div>

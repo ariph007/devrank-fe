@@ -56,11 +56,7 @@ const Dashboard = () => {
         page="dashboard"
       />
       {alert && (
-        <AlertActivity
-          data-cy="modal-information"
-          alertComponent={alert}
-          setAlertComponent={setAlert}
-        />
+        <AlertActivity alertComponent={alert} setAlertComponent={setAlert} />
       )}
 
       {/* Header */}
@@ -69,14 +65,10 @@ const Dashboard = () => {
         {/* Title Button */}
         <section>
           <div className="flex justify-between">
-            <p
-              data-cy="activity-title"
-              className="text-base font-bold text-txtBlack md:text-4xl"
-            >
+            <p className="text-base font-bold text-txtBlack md:text-4xl">
               Activity
             </p>
             <Button
-              data-cy="activity-add-button"
               type="tambah"
               onClick={onCreateActivity}
               loadingComponent={loading}
@@ -88,7 +80,6 @@ const Dashboard = () => {
           <div className=" mb-24">
             <img
               onClick={onCreateActivity}
-              data-cy="activity-empty-state"
               width={767}
               height={490}
               className="m-auto flex-1 object-contain"
@@ -101,7 +92,6 @@ const Dashboard = () => {
         <section className="mt-[37px] grid h-full w-full grid-cols-2 gap-y-[20px] sm:grid-cols-3 md:mt-[49px] md:grid-cols-2 md:gap-y-[26px] lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {activity?.map((item) => (
             <CardActivity
-              data-cy="activity-item"
               onClickCard={Cardhandler}
               key={item.id}
               id={item.id}
