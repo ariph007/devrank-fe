@@ -48,7 +48,7 @@ const TodoListItem = ({ item, refresh, handleChangeCheck, dataCy }) => {
         page="detail"
         refresh={refresh}
       />
-      <div className="flex items-center justify-center">
+      <div className="z-40 flex items-center justify-center">
         <div className="flex w-full min-w-full items-center justify-start ">
           <input
             data-cy="todo-item-checkbox"

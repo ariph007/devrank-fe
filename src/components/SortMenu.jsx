@@ -18,8 +18,8 @@ const SortMenu = ({ menuSortHandler, activeSort }) => {
 
   return (
     <div
-      className="absolute top-[60px] min-h-[260px] min-w-[235px] overflow-hidden rounded-lg border-[1px] 
-                border-[#E5E5E5] bg-txtWhite"
+      className="absolute top-[60px] z-50 min-h-[260px] min-w-[235px] overflow-hidden rounded-lg 
+                border-[1px] border-[#E5E5E5] bg-txtWhite"
     >
       {sort?.map((item) => (
         <div
